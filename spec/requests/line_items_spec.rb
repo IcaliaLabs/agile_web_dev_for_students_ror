@@ -128,4 +128,24 @@ RSpec.describe "/line_items", type: :request do
       expect(response).to redirect_to(line_items_url)
     end
   end
+
+  describe "#post line_item" do
+    it "should create line_item" do
+      product = create(:product)
+      expect do
+        post line_items_url, params: {product_id: product.id}
+      end.to change{ LineItem.count }
+    end
+
+    it "should create line_item via turbo-stream" do
+      product = create(:product)
+      expect do
+        post line_items_url, params: {product_id: product.id}, as: :turbo_stream
+      end.to change{ LineItem.count }
+
+      expect(response).to be_successful
+      byebug
+      expect(response.body).to include("line-item-highlight")
+    end
+  end
 end

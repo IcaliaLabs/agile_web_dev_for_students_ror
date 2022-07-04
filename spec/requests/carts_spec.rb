@@ -116,16 +116,19 @@ RSpec.describe "/carts", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested cart" do
-      cart = Cart.create! valid_attributes
+      product = create(:product)
+      post line_items_url, params: { product_id: product.id }
+      cart = Cart.find(session[:cart_id])
+      
       expect {
         delete cart_url(cart)
       }.to change(Cart, :count).by(-1)
     end
 
     it "redirects to the carts list" do
-      cart = Cart.create! valid_attributes
+      cart = create(:cart)
       delete cart_url(cart)
-      expect(response).to redirect_to(carts_url)
+      expect(response).to redirect_to(store_index_url)
     end
   end
 end
