@@ -144,7 +144,6 @@ RSpec.describe "/line_items", type: :request do
       end.to change{ LineItem.count }
 
       expect(response).to be_successful
-      byebug
       expect(response.body).to include("line-item-highlight")
     end
   end
