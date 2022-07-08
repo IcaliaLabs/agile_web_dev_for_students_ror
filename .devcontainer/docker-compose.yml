@@ -30,6 +30,8 @@ services:
     # Mount application source code to support file uploading
     # (otherwise Chrome won't be able to find files).
     # NOTE: Make sure you use absolute paths in `#attach_file`.
+    volumes:
+      - .:/app:cached
     environment:
       # By default, it uses 3000, which is typically used by Rails.
       PORT: 3333

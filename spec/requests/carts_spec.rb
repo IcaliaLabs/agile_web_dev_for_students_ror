@@ -128,7 +128,7 @@ RSpec.describe "/carts", type: :request do
     it "redirects to the carts list" do
       cart = create(:cart)
       delete cart_url(cart)
-      expect(response).to redirect_to(store_index_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 end

@@ -29,7 +29,7 @@ RSpec.describe "/orders", type: :request do
 
     it "requires item in cart" do
       get new_order_url
-      expect(response).to redirect_to(store_index_path)
+      expect(response).to redirect_to(root_path)
 
       follow_redirect!
 
@@ -81,7 +81,7 @@ RSpec.describe "/orders", type: :request do
       it "redirects to the created order" do
         order = create(:order)
         post orders_url, params: { order: {name: order.name, address: order.address, email: order.email, pay_type: order.pay_type} }
-        expect(response).to redirect_to(store_index_url)
+        expect(response).to redirect_to(root_path)
         follow_redirect!
         expect(response.body).to include("Thank you for your order")
       end

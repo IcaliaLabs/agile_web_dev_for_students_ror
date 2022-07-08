@@ -53,6 +53,7 @@ module CupriteHelpers
   
     # Drop #debug anywhere in a test to open a Chrome inspector and pause the execution
     def debug(*args)
+      debugger
       $stdout.puts "🔎 Open Chrome inspector at http://localhost:3333"
       page.driver.debug(*args)
     end
