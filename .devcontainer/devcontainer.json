@@ -4,7 +4,11 @@
 {
 	"name": "Ruby on Rails & Postgres",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
+	"service": "devcontainer",
+	"runServices": [
+		"chrome",
+		"db"
+	],
 	"workspaceFolder": "/workspace",
 
 	// Configure tool-specific properties.
