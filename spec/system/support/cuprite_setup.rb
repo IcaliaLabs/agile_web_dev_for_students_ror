@@ -33,9 +33,15 @@ Capybara.register_driver(:better_cuprite) do |app|
     **{
       window_size: [1200, 800],
       browser_options: remote_chrome ? { "no-sandbox" => nil } : {},
-      process_timeout: 10,
-      inspector: true,
-      headless: true
+      inspector: true
+      #browser_options: {},
+      ## Increase Chrome startup wait time (required for stable CI builds)
+      #process_timeout: 10,
+      ## Enable debugging capabilities
+      #inspector: true,
+      ## Allow running Chrome in a headful mode by setting HEADLESS env
+      ## var to a falsey value
+      #headless: !ENV["HEADLESS"].in?(%w[n 0 no false])
     }.merge(remote_options)
   )
 end
@@ -52,11 +58,12 @@ module CupriteHelpers
     end
   
     # Drop #debug anywhere in a test to open a Chrome inspector and pause the execution
-    def debug(*args)
-      debugger
-      $stdout.puts "🔎 Open Chrome inspector at http://localhost:3333"
-      page.driver.debug(*args)
-    end
+    #def debug(binding = nil)
+    #  $stdout.puts "🔎 Open Chrome inspector at http://localhost:3333"
+    #  return binding.break if binding
+
+    #  page.driver.pause
+    #end
 end
   
 RSpec.configure do |config|
