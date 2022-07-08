@@ -3,7 +3,7 @@ ARG VARIANT=3.1-bullseye
 FROM mcr.microsoft.com/vscode/devcontainers/ruby:0-${VARIANT}
 
 # Install Rails
-RUN gem install rails webdrivers 
+RUN gem install rails
 
 # Default value to allow debug server to serve content over GitHub Codespace's port forwarding service
 # The value is a comma-separated list of allowed domains 
@@ -22,3 +22,15 @@ RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSI
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+RUN sudo apt-get update
+#RUN apt-get install -y wget git unzip
+#
+## Chrome
+#RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+#    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+#RUN apt-get update && apt-get -y install google-chrome-stable
+#
+## Chromedriver
+#RUN wget -q https://chromedriver.storage.googleapis.com/103.0.5060.53/chromedriver_linux64.zip
+#RUN unzip chromedriver_linux64.zip -d /usr/local/bin
+#RUN rm -f chromedriver_linux64.zip
