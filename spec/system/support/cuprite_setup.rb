@@ -48,8 +48,16 @@ module CupriteHelpers
     def pause
       page.driver.pause
     end
-end
+  
+    # Drop #debug anywhere in a test to open a Chrome inspector and pause the execution
+    #def debug(binding = nil)
+    #  $stdout.puts "🔎 Open Chrome inspector at http://localhost:3333"
+    #  return binding.break if binding
 
+    #  page.driver.pause
+    #end
+end
+  
 RSpec.configure do |config|
   config.include CupriteHelpers, type: :system
 end

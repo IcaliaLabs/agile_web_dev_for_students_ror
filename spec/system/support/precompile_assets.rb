@@ -9,14 +9,14 @@ RSpec.configure do |config|
             $stdout.puts "\n🚀️️  No system test selected. Skip assets compilation.\n"
             next
         end
-
+    
         $stdout.puts "\n🐢  Precompiling assets.\n"
         original_stdout = $stdout.clone
-
+    
         start = Time.current
         begin
             $stdout.reopen(File.new("/dev/null", "w"))
-
+    
             require "rake"
             Rails.application.load_tasks
             Rake::Task["assets:precompile"].execute

@@ -1,4 +1,5 @@
 module BetterRailsSystemTests
+
     # Make failure screenshots compatible with multi-session setup
     def take_screenshot
         return super unless Capybara.last_used_session
@@ -9,7 +10,6 @@ end
 
 RSpec.configure do |config|
     config.include BetterRailsSystemTests, type: :system
-
     # Make urls in mailers contain the correct server host.
     # This is required for testing links in emails (e.g., via capybara-email).
     config.around(:each, type: :system) do |ex|
